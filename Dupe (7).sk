@@ -1,0 +1,29 @@
+#Made by amfirefox
+#
+#Do not reupload this plugin, sell it, or confirm it was yours ©amfirefox
+#
+#This is a dupe skript that allows you to dupe items with integets for ex: /dupe 3 or /dupe 1000, this also has a blacklist for items outside and inside of shulkers
+#Required addons: SKbee, and possibley skquery
+
+
+command /dupe <int=1>::
+  trigger:
+    set {_tool} to player's tool
+    if {_tool} is air:
+      send "&8&lL1f3&c&lSee1 &8» &aYou cannot dupe air!" to player
+      stop
+    else:
+      if "%{_tool}%" contains "shulker box":
+        set {_tag} to tag "tag;BlockEntityTag;Items" of nbt compound of {_tool} 
+        if "%{_tag}%" contains "elytra" or "trident":
+          send "&8&lL1f3&c&lSee1 &8» &aThis item is blacklisted." to player
+          stop
+      else:
+      if {_tool} is a trident or elytra:
+        send "&8&lL1f3&c&lSee1 &8» &aThis item is blacklisted." to player
+        stop
+    give (arg-int * item amount of player's tool) of player's tool to player
+
+
+
+#Enjoy my little skript ©amfirefox
